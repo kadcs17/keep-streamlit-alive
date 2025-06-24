@@ -2,10 +2,14 @@ name: Auto
 
 on:
   schedule:
-    # 下面这个 cron 表达式表示：每 30 分钟执行一次
-    - cron: '*/12 * * * *'
-  # 添加此项可以让你随时手动在 GitHub 网页端触发该工作流（可选）
-#  workflow_dispatch:
+    - cron: '7 1,5,10,14,17,22 * * *'
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
+  workflow_dispatch:
+    inputs:
+      unconditional-invoking:
+        description: 'auto'
+        required: true
+        default: true
 
 jobs:
   ping_streamlit:
