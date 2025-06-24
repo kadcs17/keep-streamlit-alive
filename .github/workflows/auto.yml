@@ -1,0 +1,19 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    # 下面这个 cron 表达式表示：每 30 分钟执行一次
+    - cron: '*/12 * * * *'
+  # 添加此项可以让你随时手动在 GitHub 网页端触发该工作流（可选）
+  workflow_dispatch:
+
+jobs:
+  ping_streamlit:
+    # 使用最新的 Ubuntu 环境
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Streamlit App
+        # 通过 curl 命令发送一个 HTTP HEAD 请求（-I 表示 HEAD，-sS 隐藏进度信息）
+        run: |
+          curl -IsS "https://python-argo-c4brhpxzz73hnydb48pv5h.streamlit.app/" -o /dev/null
